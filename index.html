@@ -36,9 +36,20 @@
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <script>
-  alert("there is a new unblocked game it calls flip sausage you can move your sausage to the goal its the only game that is unblocked. https://aslskks.github.io/flip")
-  alert("you can play anothers unblockeds games in this page. https://andrewclark3244.github.io/games")
-  alert("you can also play drift hunters in the same page. https://andrewclark3244.github.io/drift-hunters-unbl0cked.github.io/")
+  function mostrarAdvertencia() {
+    // Mensaje principal
+    const mensaje = "There is a new unblocked game! It's called Flip Sausage. You can move your sausage to the goal; it's the only game that is unblocked.\n\nWould you like to play?\n\n" +
+                    "You can also play other unblocked games on this page: https://andrewclark3244.github.io/games\n" +
+                    "And you can play Drift Hunters at: https://andrewclark3244.github.io/drift-hunters-unbl0cked.github.io/";
+
+    // Muestra la advertencia y verifica si el usuario quiere jugar Flip Sausage
+    if (confirm(mensaje)) {
+        window.location.href = "https://aslskks.github.io/flip";
+      }
+  }
+
+  // Ejecuta la advertencia al cargar la página
+  window.onload = mostrarAdvertencia;
 </script>
 
 
