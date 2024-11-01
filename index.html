@@ -35,33 +35,31 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
-<script>
-// Muestra un mensaje de advertencia al usuario
-  function mostrarAdvertencia() {
-    // Mensaje principal
-    const mensaje = "There is a new unblocked game! It's called Flip Sausage. You can move your sausage to the goal; it's the only game that is unblocked.\n\nWould you like to play?\n\n" +
-
-
-    // Primera confirmación para Flip Sausage
-    if (confirm(mensaje)) {
-        window.open("https://aslskks.github.io/flip", "_blank");
-    }
-    if  (confirm("Would you like to visit the Andrew's unblocked games page, it has drift hunters?")) {
-
-    
-        // Segunda confirmación para la página de juegos de Andrew
-        alert("only the  games that have picture are unblocked")
-        if (jugarEnAndrew) {
-            window.open("https://andrewclark3244.github.io/games", "about:blank");
-            window.open("https://andrewclark3244.github.io/drift-hunters-unbl0cked.github.io/", "_blank");
-        }
-    }
-  }
-
-// Ejecuta la advertencia al cargar la página
-window.onload = mostrarAdvertencia;
-
-</script>
+    <script>
+      // Muestra un mensaje de advertencia al usuario
+      function mostrarAdvertencia() {
+          // Mensaje principal
+          const mensaje = "There is a new unblocked game! It's called Flip Sausage. You can move your sausage to the goal; it's the only game that is unblocked.\n\nWould you like to play?\n\n";
+      
+          // Primera confirmación para Flip Sausage
+          if (confirm(mensaje)) {
+              window.open("https://aslskks.github.io/flip", "_blank");
+          }
+      
+          // Segunda confirmación para la página de juegos de Andrew
+          if (confirm("Would you like to visit Andrew's unblocked games page? It also has Drift Hunters!")) {
+              alert("Only the games that have a picture are unblocked.");
+      
+              // Abre las páginas de Andrew en nuevas pestañas
+              window.open("https://andrewclark3244.github.io/games", "_blank");
+              window.open("https://andrewclark3244.github.io/drift-hunters-unbl0cked.github.io/", "_blank");
+          }
+      }
+      
+      // Ejecuta la advertencia al cargar la página
+      window.onload = mostrarAdvertencia;
+      </script>
+      
 
 
 
