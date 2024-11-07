@@ -6,13 +6,25 @@
     <title>Control de Encendido/Apagado</title>
 </head>
 <body>
+    <h1>Control del Estado del Sitio</h1>
+    <button onclick="toggleSiteStatus()">Cambiar Estado</button>
+    <p>Estado actual: <span id="status">Desconocido</span></p>
+
     <script>
-        // Alterna el estado de "apagado" en el almacenamiento local
-        const isSiteOff = localStorage.getItem('siteStatus') === 'off';
-        localStorage.setItem('siteStatus', isSiteOff ? 'on' : 'off');
-        alert(`Sitio ${isSiteOff ? 'encendido' : 'apagado'}.`);
-        // Redirige a la página principal después de cambiar el estado
-        window.location.href = "https://aslskks.github.io/";
+        // Función para alternar el estado del sitio
+        function toggleSiteStatus() {
+            const currentStatus = localStorage.getItem('siteStatus');
+            const newStatus = currentStatus === 'on' ? 'off' : 'on';
+            localStorage.setItem('siteStatus', newStatus);
+            document.getElementById('status').textContent = newStatus === 'on' ? 'Encendido' : 'Apagado';
+            alert(`El sitio está ahora ${newStatus === 'on' ? 'encendido' : 'apagado'}.`);
+        }
+
+        // Mostrar el estado actual al cargar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            const currentStatus = localStorage.getItem('siteStatus') || 'off';
+            document.getElementById('status').textContent = currentStatus === 'on' ? 'Encendido' : 'Apagado';
+        });
     </script>
 </body>
 </html>
