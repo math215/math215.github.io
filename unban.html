@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <script>
-        localStorage.removeItem('blacklist');
-    </script>
+    <head>
+        <title>Eliminar de la Blacklist</title>
+    </head>
+    <body>
+        <script>
+            // Elimina la entrada 'blacklist' del localStorage
+            localStorage.removeItem('blacklist');
+            alert('Has sido eliminado de la blacklist.');
+            // Redirige a otra página (opcional)
+            window.location.href = '/';  // Puedes cambiar '/' por la URL a la que quieras redirigir
+        </script>
+    </body>
 </html>
