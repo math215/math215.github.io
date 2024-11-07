@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
+      <script>
+        // Verifica el estado de encendido/apagado en el almacenamiento local
+        const siteStatus = localStorage.getItem('siteStatus');
+        if (siteStatus === 'off') {
+            document.body.innerHTML = "<h1>La página está actualmente apagada.</h1>";
+        } else {
+            // Aquí va el contenido normal de la página cuando está "encendida"
+            
+        
+    </script>
+
 		
 		<link rel="icon" href="lol pages.webp" sizes="32x32">
 		
@@ -55,6 +66,7 @@
 
 </head>
 	<body
+  
 	id="page-top" style="background:  background-size: cover;
 		    background: #26616a;">
 		<!-- Navigation-->
@@ -1209,6 +1221,8 @@
   }
 </script>
 
+
 	
 	  </body>
 </html>
+  }
