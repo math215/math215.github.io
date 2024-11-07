@@ -1,25 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
-    <script>
-      function leerArchivo() {
-          const archivo = document.getElementById('status').files[0];
-          if (archivo) {
-              const lector = new FileReader();
-              lector.onload = function(e) {
-                  const contenido = e.target.result;
-                  
-                  // Comprobamos si el contenido contiene la palabra "off"
-                  if (contenido.includes("off")) {
-                      document.getElementById('resultado').textContent = "la pagina esta en mantenimiento'.";
-                  } else {
-                      document.getElementById('resultado').textContent = "El archivo NO contiene 'off'.";
-                      // Aquí puedes hacer lo que necesites si NO se encuentra "off"
-                      // Por ejemplo: otra acción.
                   
       
 
 		
+    <!-- Mensaje de apagado -->
+    <div id="apagado">La página está apagada. :</div>
+
+    <script>
+        // Detecta la combinación de teclas Alt + Ctrl
+        let teclaAlt = false;
+        let teclaCtrl = false;
+
+        document.addEventListener('keydown', function(event) {
+            // Detecta si se presionan las teclas Alt y Ctrl simultáneamente
+            if (event.key === 'Alt') {
+                teclaAlt = true;
+            }
+            if (event.key === 'Control') {
+                teclaCtrl = true;
+            }
+
+            // Si se presionan Alt + Ctrl, "apaga" la página
+            if (teclaAlt && teclaCtrl) {
+                apagarPagina();
+            }
+        });
+
+        document.addEventListener('keyup', function(event) {
+            // Reinicia las teclas cuando se dejan de presionar
+            if (event.key === 'Alt') {
+                teclaAlt = false;
+            }
+            if (event.key === 'Control') {
+                teclaCtrl = false;
+            }
+        });
+
+        function apagarPagina() {
+            // Oculta todo el contenido de la página
+            document.body.style.display = 'none';  // Oculta el contenido
+            // Muestra el mensaje de apagado
+            document.getElementById('apagado').style.display = 'block';
+
+            // Opcional: Puedes hacer que la página no se recargue automáticamente.
+            // Así, si alguien hace Ctrl + R o recarga la página, seguirá el "apagado".
+        }
+    </script>
+
 		<link rel="icon" href="lol pages.webp" sizes="32x32">
 		
 		<meta charset="utf-8">
@@ -1232,6 +1261,3 @@
 	
 	  </body>
 </html>
-  }
-  }}};
-  </script>
