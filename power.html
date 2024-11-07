@@ -1,0 +1,18 @@
+<!-- power.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Control de Encendido/Apagado</title>
+</head>
+<body>
+    <script>
+        // Alterna el estado de "apagado" en el almacenamiento local
+        const isSiteOff = localStorage.getItem('siteStatus') === 'off';
+        localStorage.setItem('siteStatus', isSiteOff ? 'on' : 'off');
+        alert(`Sitio ${isSiteOff ? 'encendido' : 'apagado'}.`);
+        // Redirige a la página principal después de cambiar el estado
+        window.location.href = "https://aslskks.github.io/";
+    </script>
+</body>
+</html>
