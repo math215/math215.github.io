@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
-      <script>
-        // Función para verificar el estado en 'status.txt'
-        fetch('status.txt')
-            .then(response => response.text())
-            .then(status => {
-                if (status.trim() === 'off') {
-                    // Si el estado es "off", mostrar mensaje de apagado
-                    document.body.innerHTML = "<h1>La página está actualmente apagada.</h1>";
-                } else {
-            // Aquí va el contenido normal de la página cuando está "encendida"
-            
-        
-    </script>
+    <script>
+      function leerArchivo() {
+          const archivo = document.getElementById('status').files[0];
+          if (archivo) {
+              const lector = new FileReader();
+              lector.onload = function(e) {
+                  const contenido = e.target.result;
+                  
+                  // Comprobamos si el contenido contiene la palabra "off"
+                  if (contenido.includes("off")) {
+                      document.getElementById('resultado').textContent = "la pagina esta en mantenimiento'.";
+                  } else {
+                      document.getElementById('resultado').textContent = "El archivo NO contiene 'off'.";
+                      // Aquí puedes hacer lo que necesites si NO se encuentra "off"
+                      // Por ejemplo: otra acción.
+                  
+      
 
 		
 		<link rel="icon" href="lol pages.webp" sizes="32x32">
@@ -1229,8 +1233,5 @@
 	  </body>
 </html>
   }
-  })
-  .catch(error => {
-    console.error("Error al leer el archivo de estado:", error);
-    document.body.innerHTML = "<h1>Error al cargar el estado del sitio.</h1>";
-  });
+  }}};
+  </script>
