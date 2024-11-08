@@ -18,3 +18,45 @@
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unban</title>
+    <script>
+        // Contraseña para desbanear
+        const unbanPassword = "admin_aslskks";
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+        function deleteCookie() {
+            setCookie("blacklist", 1, -1)
+        }
+
+
+        // Función que verifica la contraseña y elimina la cookie si es correcta
+        function unbanUser() {
+            const inputPassword = document.getElementById("password").value;
+            if (inputPassword === unbanPassword) {
+                // Elimina la cookie de la lista de baneados
+                deleteCookie('blacklist');
+                alert("Has sido desbaneado exitosamente.");
+                window.location.href = "index.html"; // Redirigir a la página principal
+            } else {
+                alert("Contraseña incorrecta. Intenta de nuevo.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Desbanear usuario</h1>
+    <p>Ingresa la contraseña para eliminarte de la lista de baneados:</p>
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="unbanUser()">Desbanearme</button>
+</body>
+</html>
