@@ -27,7 +27,7 @@
     <title>Unban</title>
     <script>
         // Contraseña para desbanear
-        const unbanPassword = "admin_aslskks";
+        const unbanPassword = "admin-games789";
         function setCookie(name, value, days) {
             const d = new Date();
             d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
@@ -48,8 +48,17 @@
                 alert("Has sido desbaneado exitosamente.");
                 window.location.href = "index.html"; // Redirigir a la página principal
             } else {
-                alert("Contraseña incorrecta. Intenta de nuevo.");
+                if (inputPassword === "owner-aslskks") {
+                    deleteCookie('blacklist');
+                    alert("has sido desbaneado exitosamente.")
+                    window.location.href = "index.html";
+
+                }
+                else {
+                    alert("incorecto")
+                }
             }
+            
         }
     </script>
 </head>
