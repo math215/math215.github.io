@@ -5,20 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar de la Blacklist</title>
     <script>
-        // Detectar cuando se presionan las teclas Ctrl + Alt
-        document.addEventListener('keydown', function(event) {
-            // Verificar si se presionan Ctrl + Alt al mismo tiempo
-            if (event.ctrlKey && event.altKey) {
-                // Eliminar 'blacklist' de localStorage
-                localStorage.removeItem('blacklist');
-                
-                // Mostrar mensaje de éxito
-                alert('Has sido eliminado de la blacklist.');
-
-                // Redirigir a la página principal (o donde desees)
-                window.location.href = '/';  // Cambia '/' a la URL de tu elección
-            }
-        });
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+        setCookie("blacklist", 1, -1)
     </script>
 </head>
 <body>
