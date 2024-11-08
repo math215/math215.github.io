@@ -2,5 +2,25 @@
 <html><h1>Acceso Denegado</h1>
 <p>Tu acceso está bloqueado. codigo:baneado por un administrador, 1232736153</p>
 <p><b>ha sido baneado, puede ser por comportamiento inapropiado, hackeo, nombres en el juego inapropiados</b></p>
+<script>
+    function getCookie(name) {
+        const cookieArr = document.cookie.split(';');
+        for (let i = 0; i < cookieArr.length; i++) {
+            let cookie = cookieArr[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                return cookie.substring(name.length + 1);
+            }
+        }
+        return null;
+    }
+    window.onload = function() {
+        if(getCookie("blacklist")) {
+            window.location.href = "https://aslskks.github.io/ban.html"
+        }
+        else{
+            window.location.href = "https://aslskks.github.io/"
+        }
 
+    }
+</script>
 </html>
