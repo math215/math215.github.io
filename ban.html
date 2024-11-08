@@ -1,8 +1,42 @@
 <!DOCTYPE html>
 <html><h1>Acceso Denegado</h1>
-<p>Tu acceso está bloqueado. baneado por un administrador codigo: 1232736153</p>
+<p>Tu acceso esta bloqueado. baneado por un administrador codigo: 1232736153</p>
 <p><b>ha sido baneado, puede ser por comportamiento inapropiado, hackeo, nombres en el juego inapropiados</b></p>
-<body>hola</body>
+<style>
+    /* Estilos básicos del botón */
+    .boton-unban {
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Cambia la posición y sombra del botón al pasar el mouse */
+    .boton-unban:hover {
+        transform: translateY(-4px); /* Sube un poco */
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Agrega sombra */
+        cursor: pointer; /* Cambia el cursor */
+    }
+
+    /* "Apachurra" el botón cuando se hace clic */
+    .boton-unban:active {
+        transform: translateY(4px); /* Baja el botón al hacer clic */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reduce la sombra */
+    }
+</style>
+<body>
+    <!-- Botón con un enlace -->
+    <a href="https://aslskks.github.io/unban.html">
+        <button style="background-color: blue; color: white; padding: 10px 20px; border: none; border-radius:5px;"; class="boton-unban">debanearme</button>
+    </a>
+
+
+</body>
+</body>
 <script>
     function getCookie(name) {
         const cookieArr = document.cookie.split(';');
@@ -16,20 +50,12 @@
     }
     window.onload = function() {
         if(getCookie("blacklist")) {
-            window.location.href = "https://aslskks.github.io/ban.html"
+            //window.location.href = "https://aslskks.github.io/ban.html"
         }
         else{
-            window.location.href = "https://aslskks.github.io/"
+            //window.location.href = "https://aslskks.github.io/"
         }
 
-    }
-</script>
-<script>
-    if(getCookie("blacklist")) {
-        window.location.href = "https://aslskks.github.io/ban.html"
-    }
-    else{
-        window.location.href = "https://aslskks.github.io/"
     }
 </script>
 </html>
