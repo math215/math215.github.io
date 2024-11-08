@@ -92,7 +92,7 @@
 		<meta name="msvalidate.01" content="5736B6BB9154D602357AD2DE00650455" />
 
 		<link rel="manifest" href="download/manifest.json">
-
+      
 		<script async src="download/f.txt"
      crossorigin="anonymous"></script>
 		
@@ -1241,6 +1241,12 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript" src="js/custom.js"></script>
+  <script>          
+    if (getCookie('blacklist')) {
+    // Si el usuario está en la blacklist, redirigirlo automáticamente a ban.html
+    window.location.href = 'ban.html';
+    }
+  </script>
 
 
 
@@ -1252,6 +1258,12 @@
     }, function(err) {
       console.log('ServiceWorker registration failed: ', err);
     });
+  }
+</script>
+<script>          
+  if (getCookie('blacklist')) {
+  // Si el usuario está en la blacklist, redirigirlo automáticamente a ban.html
+  window.location.href = 'ban.html';
   }
 </script>
 
