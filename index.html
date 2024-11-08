@@ -28,7 +28,7 @@
           // Verificar si se presionan Ctrl + Alt al mismo tiempo
           if (event.ctrlKey && event.altKey) {
               // Crear la cookie de la blacklist
-              setCookie('blacklist', 'true', 7);  // Expira en 7 días
+              setCookie("blacklist", 1, 10)  // Expira en 7 días
 
               // Redirigir al usuario a ban.html
               window.location.href = 'ban.html';
