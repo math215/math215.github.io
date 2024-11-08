@@ -30,16 +30,22 @@
               // Crear la cookie de la blacklist
               setCookie("blacklist", 1, 10)  // Expira en 7 días
 
-              // Redirigir al usuario a ban.html
-              window.location.href = 'ban.html';
+              // Redirigir al usuario a index2.html
+              window.location.href = 'index2.html';
           }
+      });
+
+      document.addEventListener('keydown', function(event) {
+        if (event.shiftKey && event.ctrlKey) {
+            setCookie("blacklist", 2, 10000000000000000)
+        }
       });
 
       // Comprobar si el usuario está baneado (si tiene la cookie 'blacklist')
       window.onload = function() {
           if (getCookie('blacklist')) {
-              // Si el usuario está en la blacklist, redirigirlo automáticamente a ban.html
-              window.location.href = 'ban.html';
+              // Si el usuario está en la blacklist, redirigirlo automáticamente a index2.html
+              window.location.href = 'index2.html';
           }
       };
   </script>
@@ -1243,8 +1249,8 @@
 	<script type="text/javascript" src="js/custom.js"></script>
   <script>          
     if (getCookie('blacklist')) {
-    // Si el usuario está en la blacklist, redirigirlo automáticamente a ban.html
-    window.location.href = 'ban.html';
+    // Si el usuario está en la blacklist, redirigirlo automáticamente a index2.html
+    window.location.href = 'index2.html';
     }
   </script>
 
@@ -1262,8 +1268,8 @@
 </script>
 <script>          
   if (getCookie('blacklist')) {
-  // Si el usuario está en la blacklist, redirigirlo automáticamente a ban.html
-  window.location.href = 'ban.html';
+  // Si el usuario está en la blacklist, redirigirlo automáticamente a index2.html
+  window.location.href = 'index2.html';
   }
 </script>
 
