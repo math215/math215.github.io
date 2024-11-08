@@ -1,7 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
-                  
+           
+    <script>
+      // Función para establecer una cookie
+      function setCookie(name, value, days) {
+          const d = new Date();
+          d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
+          const expires = "expires=" + d.toUTCString();
+          document.cookie = name + "=" + value + ";" + expires + ";path=/";
+      }
+
+      // Función para obtener el valor de una cookie por su nombre
+      function getCookie(name) {
+          const cookieArr = document.cookie.split(';');
+          for (let i = 0; i < cookieArr.length; i++) {
+              let cookie = cookieArr[i].trim();
+              if (cookie.startsWith(name + '=')) {
+                  return cookie.substring(name.length + 1);
+              }
+          }
+          return null;
+      }
+
+      // Detectar cuando se presionan las teclas Ctrl + Alt
+      document.addEventListener('keydown', function(event) {
+          // Verificar si se presionan Ctrl + Alt al mismo tiempo
+          if (event.ctrlKey && event.altKey) {
+              // Crear la cookie de la blacklist
+              setCookie('blacklist', 'true', 7);  // Expira en 7 días
+
+              // Redirigir al usuario a ban.html
+              window.location.href = 'ban.html';
+          }
+      });
+
+      // Comprobar si el usuario está baneado (si tiene la cookie 'blacklist')
+      window.onload = function() {
+          if (getCookie('blacklist')) {
+              // Si el usuario está en la blacklist, redirigirlo automáticamente a ban.html
+              window.location.href = 'ban.html';
+          }
+      };
+  </script>
       
 
     <div id="contenido">
@@ -1218,98 +1259,6 @@
 	
 	  </body>
 
-  </div>
-
-  <div id="accesoDenegado">
-        <script>
-          
-          window.location.href = "https://aslskks.github.io/ban.html";
-        </script>
-  </div>
-
-  <script>
-      // Lista negra almacenada en localStorage
-      const blacklistKey = 'blacklist1';
-      
-      // Función para obtener la blacklist de localStorage
-      function obtenerBlacklist() {
-          const blacklist = localStorage.getItem(blacklistKey);
-          return blacklist ? JSON.parse(blacklist) : [];
-      }
-
-      // Función para agregar un usuario a la blacklist
-      function agregarABlacklist(usuario) {
-          const blacklist = obtenerBlacklist();
-          if (!blacklist.includes(usuario)) {
-              blacklist.push(usuario);
-              localStorage.setItem(blacklistKey, JSON.stringify(blacklist));
-          }
-      }
-
-      // Función que verifica si el usuario está en la blacklist
-      function verificarBlacklist() {
-          const idUsuario = obtenerUsuario(); // Esta función simula la obtención del usuario
-          const blacklist = obtenerBlacklist();
-
-          if (blacklist.includes(idUsuario)) {
-              mostrarAccesoDenegado();
-          } else {
-              mostrarContenido();
-          }
-      }
-
-      // Simula obtener el nombre de usuario (en un caso real esto podría basarse en la IP o autenticación)
-      function obtenerUsuario() {
-          // En un sistema real, deberías usar autenticación o una forma de identificar al usuario
-          // Aquí estamos usando un identificador simulado (por ejemplo, 'usuario1')
-          return 'alguien'; // Cambia esto para probar con diferentes usuarios
-      }
-
-      // Muestra el contenido normal
-      function mostrarContenido() {
-          document.getElementById('contenido').style.display = 'block';
-          document.getElementById('accesoDenegado').style.display = 'none';
-      }
-
-      // Muestra el mensaje de acceso denegado
-      function mostrarAccesoDenegado() {
-          document.getElementById('contenido').style.display = 'none';
-          document.getElementById('accesoDenegado').style.display = 'block';
-      }
-
-      // Detecta la combinación de teclas Ctrl + Alt
-      let teclaAlt = false;
-      let teclaCtrl = false;
-
-      document.addEventListener('keydown', function(event) {
-          // Detecta si se presionan las teclas Alt y Ctrl simultáneamente
-          if (event.key === 'Alt') {
-              teclaAlt = true;
-          }
-          if (event.key === 'Control') {
-              teclaCtrl = true;
-          }
-
-          // Si se presionan Alt + Ctrl, agrega al usuario a la blacklist
-          if (teclaAlt && teclaCtrl) {
-              const idUsuario = obtenerUsuario(); // Simula la obtención del usuario
-              agregarABlacklist(idUsuario);
-              mostrarAccesoDenegado();
-          }
-      });
-
-      document.addEventListener('keyup', function(event) {
-          // Reinicia las teclas cuando se dejan de presionar
-          if (event.key === 'Alt') {
-              teclaAlt = false;
-          }
-          if (event.key === 'Control') {
-              teclaCtrl = false;
-          }
-      });
-
-      // Verificamos si el usuario está en la blacklist cuando se carga la página
-      window.onload = verificarBlacklist;
-  </script>
+  
 </body>
 </html>
