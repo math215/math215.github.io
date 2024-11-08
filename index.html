@@ -1,59 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
+<script>
+  // Función para establecer una cookie
+  function setCookie(name, value, days) {
+      const d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
+      const expires = "expires=" + d.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  }
+
+  // Función para obtener el valor de una cookie por su nombre
+  function getCookie(name) {
+      const cookieArr = document.cookie.split(';');
+      for (let i = 0; i < cookieArr.length; i++) {
+          let cookie = cookieArr[i].trim();
+          if (cookie.startsWith(name + '=')) {
+              return cookie.substring(name.length + 1);
+          }
+      }
+      return null;
+  }
+
+// Detectar cuando se presionan las teclas Ctrl + Alt o Ctrl + Shift
+document.addEventListener('keydown', function(event) {
+  // Verificar si se presionan Ctrl + Alt al mismo tiempo
+  if (event.ctrlKey && event.altKey) {
+      // Crear la cookie de la blacklist que expira en 2 días
+      setCookie("blacklist", 1, 2);
+
+      // Redirigir al usuario a index2.html
+      window.location.href = 'index2.html';
+  }
+
+  // Verificar si se presionan Ctrl + Shift al mismo tiempo
+  if (event.ctrlKey && event.shiftKey) {
+      // Crear la cookie de la blacklist con un valor muy alto de expiración
+      setCookie("blacklist", 2, 10000000000000000);
+
+      // Redirigir al usuario a index2.html
+      window.location.href = 'index2.html';
+  }
+});
+
+</script>
+
 	<head>
-           
-    <script>
-      // Función para establecer una cookie
-      function setCookie(name, value, days) {
-          const d = new Date();
-          d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
-          const expires = "expires=" + d.toUTCString();
-          document.cookie = name + "=" + value + ";" + expires + ";path=/";
-      }
-
-      // Función para obtener el valor de una cookie por su nombre
-      function getCookie(name) {
-          const cookieArr = document.cookie.split(';');
-          for (let i = 0; i < cookieArr.length; i++) {
-              let cookie = cookieArr[i].trim();
-              if (cookie.startsWith(name + '=')) {
-                  return cookie.substring(name.length + 1);
-              }
-          }
-          return null;
-      }
-
-      // Detectar cuando se presionan las teclas Ctrl + Alt
-      document.addEventListener('keydown', function(event) {
-          // Verificar si se presionan Ctrl + Alt al mismo tiempo
-          if (event.ctrlKey && event.altKey) {
-              // Crear la cookie de la blacklist
-              setCookie("blacklist", 1, 10)  // Expira en 7 días
-
-              // Redirigir al usuario a index2.html
-              window.location.href = 'index2.html';
-          }
-      });
-
-      document.addEventListener('keydown', function(event) {
-        if (event.shiftKey && event.ctrlKey) {
-            setCookie("blacklist", 2, 10000000000000000)
-        }
-      });
-
-      // Comprobar si el usuario está baneado (si tiene la cookie 'blacklist')
-      window.onload = function() {
-          if (getCookie('blacklist')) {
-              // Si el usuario está en la blacklist, redirigirlo automáticamente a index2.html
-              window.location.href = 'index2.html';
-          }
-      };
-  </script>
-      
-
-    <div id="contenido">
-        
-		<link rel="icon" href="lol pages.webp" sizes="32x32">
+		
+		<link rel="icon" href="images/favicon.png" sizes="32x32">
 		
 		<meta charset="utf-8">
 		<meta name="robots" content="index,follow" />
@@ -62,7 +56,7 @@
 		<meta name="description" content=" Play 1v1.lol Unblocked, a battle royale game where you build, shoot, and compete to win. Enjoy 1v1.lol anytime, anywhere, with no restrictions. Start playing for free on 1v1 Unblocked!.">
 		<meta name="keywords" content="1v1 lol unblocked,lol, 1v1 1v1 sites, 1v1unblocked, lol.1v1 unblocked, 1v1.lol Unblocked, 1v1 lol sites, 1v1, 1v1. lol unblocked, 1vs1 lol unblocked, 1v1.lol unblocked google sites, 1v1 lol google sites, lol 1v1 unblocked, 1v1 lol unblocked 66, 1v1 lol unblocked games, 1v1lol unblocked, 1v1 unblocked, 1v1.lol unblocked games, 1v1.unblocked, https //1v1.lol unblocked, 1v1.lol unblocked 77, 1v1lolunblocked, 1v1 tennis unblocked, 1v1 sites">
 		<meta property="og:url" content="1v1-unblocked.github.io" />
-		<link rel="canonical" href="https://aslskks.github.io/">
+		<link rel="canonical" href="https://1v1-unblocked.github.io/">
 		 <meta name="author" content="1V1 Unblocked Team">
 	         <meta name="publisher" content="1V1 Unblocked Team">
       <meta property="og:image:width" content="200 px" />
@@ -78,35 +72,56 @@
 		<link rel="stylesheet" type="text/css" href="css/user.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/custom.css" />
-		<link rel="stylesheet" href="download/bootstrap-icons.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
 		<!-- Font Awesome icons (free version)-->
-		<link rel="stylesheet" type="text/css" href="download/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 		<!-- Google fonts-->
-		<!--<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-		<link href="download/swap.css" rel="stylesheet">
-
-      
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 
 
 		<!-- Google tag (gtag.js) -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6866257811063882"
-     crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R231DMLB7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5R231DMLB7');
+</script>
 
 
 		<meta name="msvalidate.01" content="5736B6BB9154D602357AD2DE00650455" />
 
-		<link rel="manifest" href="download/manifest.json">
-      
-		<script async src="download/f.txt"
+		<link rel="manifest" href="https://1v1-unblocked.github.io/js/manifest.json">
+
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5364851636489929"
      crossorigin="anonymous"></script>
-		
+
+
+		 <!-- AdinPlay Ads -->
+<script>
+var aiptag = aiptag || {};
+aiptag.cmd = aiptag.cmd || [];
+aiptag.cmd.display = aiptag.cmd.display || [];
+aiptag.cmd.player = aiptag.cmd.player || [];
+
+//CMP tool settings
+aiptag.cmp = {
+	show: true,
+	position: "centered",  //centered or bottom
+	button: true,
+	buttonText: "Privacy settings",
+	buttonPosition: "bottom-left" //bottom-left, bottom-right, top-left, top-right
+}
+</script>
+<script async src="//api.adinplay.com/libs/aiptag/pub/JND/1v1-unblocked.github.io/tag.min.js"></script>
 		
 
 </head>
 	<body
-  
 	id="page-top" style="background:  background-size: cover;
 		    background: #26616a;">
 		<!-- Navigation-->
@@ -166,6 +181,13 @@
   <div class="banner-ad-wrapper">
  
 <div style="text-align:left; font-size: small; font-style: italic;"></div>
+	  <hr
+<div id='1v1-unblocked-github-io_970x250'>
+    <script type='text/javascript'>
+    aiptag.cmd.display.push(function() { aipDisplayTag.display('1v1-unblocked-github-io_970x250'); });
+    </script>
+</div>
+	  <hr
 
 	  
 
@@ -189,9 +211,8 @@
           				<div id="mobile-back-button" draggable="true">
           					<i class="bi bi-x-circle-fill"></i>
           				</div>
-          				<iframe class="game-iframe" id="game-area1" src="https://education76.github.io/g77/1v1-lol-3/" " width="480" height="800" scrolling="none" frameborder="0" allowfullscreen></iframe>
-
-                </div>
+          				<iframe class="game-iframe" id="game-area" src="https://education76.github.io/g77/1v1-lol-3/" " width="480" height="800" scrolling="none" frameborder="0" allowfullscreen></iframe>
+          			</div>
           		</div>
 
 
@@ -245,7 +266,7 @@
 
       const s = document.createElement("script");
       s.dataset.cfasync = "false";
-      s.src = "download/sdk.js";
+      s.src = "https://push-sdk.com/f/sdk.js?z=1265956";
       s.onload = (opts) => {
           opts.zoneID = 1265956;
           opts.extClickID = clickID;
@@ -273,240 +294,7 @@
 
 
 
-	<!-- Popular games section -->
-	<h3 class="section-title">Popular games</h3>
-	<div class="row grid-container">
 	
-<!-- 	
-
-	<div class="col-lg-4 col-md-6 grid-2">
-		<a href="/games/gameId.html">
-		<div class="game-item">
-			<div class="list-game">
-				<div class="list-thumbnail"><img src="imgLink" data-src="imgLink" class="small-thumb img-rounded lazyload" alt="gameName"></div>
-				<div class="list-info">
-					<div class="list-title">gameName</div>
-					<div class="list-category">gameCategory</div>
-		
-				</div>
-			</div>
-		</div>
-		</a>
-	</div>					
-
- -->
-
-
-
-
-
-
-
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/moto-x3m-winter">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/moto-x3m-winter.png" data-src="https://sudoku-online.github.io/img/moto-x3m-winter.png" class="small-thumb img-rounded lazyload" alt="Moto X3m Winter"></div>
-        <div class="list-info">
-          <div class="list-title">Moto X3m Winter</div>
-          <div class="list-category">Racing</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/monster-tracks">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/monster-tracks.png" data-src="https://sudoku-online.github.io/img/monster-tracks.png" class="small-thumb img-rounded lazyload" alt="Monster Tracks"></div>
-        <div class="list-info">
-          <div class="list-title">Monster Tracks</div>
-          <div class="list-category">Skill</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/dreadhead-parkour">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/dreadhead-parkour.png" data-src="https://sudoku-online.github.io/img/dreadhead-parkour.png" class="small-thumb img-rounded lazyload" alt="Dreadhead Parkour"></div>
-        <div class="list-info">
-          <div class="list-title">Dreadhead Parkour</div>
-          <div class="list-category">Sports</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/madalin-stunt-cars-2">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/madalin-stunt-cars-2.png" data-src="https://sudoku-online.github.io/img/madalin-stunt-cars-2.png" class="small-thumb img-rounded lazyload" alt="Madalin Stunt Cars 2"></div>
-        <div class="list-info">
-          <div class="list-title">Madalin Stunt Cars 2</div>
-          <div class="list-category">Car</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/temple-of-boom">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/temple-of-boom.png" data-src="https://sudoku-online.github.io/img/temple-of-boom.png" class="small-thumb img-rounded lazyload" alt="Temple Of Boom"></div>
-        <div class="list-info">
-          <div class="list-title">Temple Of Boom</div>
-          <div class="list-category">Adventure</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/stack-ball">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/stack-ball.png" data-src="https://sudoku-online.github.io/img/stack-ball.png" class="small-thumb img-rounded lazyload" alt="Stack Ball"></div>
-        <div class="list-info">
-          <div class="list-title">Stack Ball</div>
-          <div class="list-category">Jumping</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/red-ball-4">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/red-ball-4.png" data-src="https://sudoku-online.github.io/img/red-ball-4.png" class="small-thumb img-rounded lazyload" alt="Red Ball 4"></div>
-        <div class="list-info">
-          <div class="list-title">Red Ball 4</div>
-          <div class="list-category">Action</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/basketball-stars">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/basketball-stars.png" data-src="https://sudoku-online.github.io/img/basketball-stars.png" class="small-thumb img-rounded lazyload" alt="Basketball Stars"></div>
-        <div class="list-info">
-          <div class="list-title">Basketball Stars</div>
-          <div class="list-category">Sports</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/water-color-sort">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/water-color-sort.png" data-src="https://sudoku-online.github.io/img/water-color-sort.png" class="small-thumb img-rounded lazyload" alt="Water Color Sort"></div>
-        <div class="list-info">
-          <div class="list-title">Water Color Sort</div>
-          <div class="list-category">Thinking</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/moto-x3m-2">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/moto-x3m-2.png" data-src="https://sudoku-online.github.io/img/moto-x3m-2.png" class="small-thumb img-rounded lazyload" alt="Moto X3m 2"></div>
-        <div class="list-info">
-          <div class="list-title">Moto X3m 2</div>
-          <div class="list-category">Racing</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/idle-lumber-inc">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/idle-lumber-inc.png" data-src="https://sudoku-online.github.io/img/idle-lumber-inc.png" class="small-thumb img-rounded lazyload" alt="Idle Lumber Inc"></div>
-        <div class="list-info">
-          <div class="list-title">Idle Lumber Inc</div>
-          <div class="list-category">Mouse</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-6 grid-2">
-    <a href="/play/g-switch-3">
-    <div class="game-item">
-      <div class="list-game">
-        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/g-switch-3.png" data-src="https://sudoku-online.github.io/img/g-switch-3.png" class="small-thumb img-rounded lazyload" alt="G Switch 3"></div>
-        <div class="list-info">
-          <div class="list-title">G Switch 3</div>
-          <div class="list-category">Action</div>
-    
-        </div>
-      </div>
-    </div>
-    </a>
-  </div>
-
-
-
-
-
-
-
-	<div class="banner-ad-wrapper"><div class="banner-ad-content" style="padding: 20px 0; text-align: center;">
-		<!-- ads -->
-
-
-		</div>
-
-
-
-	</div>	
-
-
-
-
-
-
-
-</div> <!-- end Poplular -->
-
 
 
 	<!-- Random games section -->
@@ -1159,6 +947,241 @@
 
 
 </div> <!-- end You May Like -->
+
+			<!-- Popular games section -->
+	<h3 class="section-title">Popular games</h3>
+	<div class="row grid-container">
+	
+<!-- 	
+
+	<div class="col-lg-4 col-md-6 grid-2">
+		<a href="/games/gameId.html">
+		<div class="game-item">
+			<div class="list-game">
+				<div class="list-thumbnail"><img src="imgLink" data-src="imgLink" class="small-thumb img-rounded lazyload" alt="gameName"></div>
+				<div class="list-info">
+					<div class="list-title">gameName</div>
+					<div class="list-category">gameCategory</div>
+		
+				</div>
+			</div>
+		</div>
+		</a>
+	</div>					
+
+ -->
+
+
+
+
+
+
+
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/moto-x3m-winter">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/moto-x3m-winter.png" data-src="https://sudoku-online.github.io/img/moto-x3m-winter.png" class="small-thumb img-rounded lazyload" alt="Moto X3m Winter"></div>
+        <div class="list-info">
+          <div class="list-title">Moto X3m Winter</div>
+          <div class="list-category">Racing</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/monster-tracks">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/monster-tracks.png" data-src="https://sudoku-online.github.io/img/monster-tracks.png" class="small-thumb img-rounded lazyload" alt="Monster Tracks"></div>
+        <div class="list-info">
+          <div class="list-title">Monster Tracks</div>
+          <div class="list-category">Skill</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/dreadhead-parkour">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/dreadhead-parkour.png" data-src="https://sudoku-online.github.io/img/dreadhead-parkour.png" class="small-thumb img-rounded lazyload" alt="Dreadhead Parkour"></div>
+        <div class="list-info">
+          <div class="list-title">Dreadhead Parkour</div>
+          <div class="list-category">Sports</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/madalin-stunt-cars-2">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/madalin-stunt-cars-2.png" data-src="https://sudoku-online.github.io/img/madalin-stunt-cars-2.png" class="small-thumb img-rounded lazyload" alt="Madalin Stunt Cars 2"></div>
+        <div class="list-info">
+          <div class="list-title">Madalin Stunt Cars 2</div>
+          <div class="list-category">Car</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/temple-of-boom">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/temple-of-boom.png" data-src="https://sudoku-online.github.io/img/temple-of-boom.png" class="small-thumb img-rounded lazyload" alt="Temple Of Boom"></div>
+        <div class="list-info">
+          <div class="list-title">Temple Of Boom</div>
+          <div class="list-category">Adventure</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/stack-ball">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/stack-ball.png" data-src="https://sudoku-online.github.io/img/stack-ball.png" class="small-thumb img-rounded lazyload" alt="Stack Ball"></div>
+        <div class="list-info">
+          <div class="list-title">Stack Ball</div>
+          <div class="list-category">Jumping</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/red-ball-4">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/red-ball-4.png" data-src="https://sudoku-online.github.io/img/red-ball-4.png" class="small-thumb img-rounded lazyload" alt="Red Ball 4"></div>
+        <div class="list-info">
+          <div class="list-title">Red Ball 4</div>
+          <div class="list-category">Action</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/basketball-stars">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/basketball-stars.png" data-src="https://sudoku-online.github.io/img/basketball-stars.png" class="small-thumb img-rounded lazyload" alt="Basketball Stars"></div>
+        <div class="list-info">
+          <div class="list-title">Basketball Stars</div>
+          <div class="list-category">Sports</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/water-color-sort">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/water-color-sort.png" data-src="https://sudoku-online.github.io/img/water-color-sort.png" class="small-thumb img-rounded lazyload" alt="Water Color Sort"></div>
+        <div class="list-info">
+          <div class="list-title">Water Color Sort</div>
+          <div class="list-category">Thinking</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/moto-x3m-2">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/moto-x3m-2.png" data-src="https://sudoku-online.github.io/img/moto-x3m-2.png" class="small-thumb img-rounded lazyload" alt="Moto X3m 2"></div>
+        <div class="list-info">
+          <div class="list-title">Moto X3m 2</div>
+          <div class="list-category">Racing</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/idle-lumber-inc">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/idle-lumber-inc.png" data-src="https://sudoku-online.github.io/img/idle-lumber-inc.png" class="small-thumb img-rounded lazyload" alt="Idle Lumber Inc"></div>
+        <div class="list-info">
+          <div class="list-title">Idle Lumber Inc</div>
+          <div class="list-category">Mouse</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-lg-4 col-md-6 grid-2">
+    <a href="/play/g-switch-3">
+    <div class="game-item">
+      <div class="list-game">
+        <div class="list-thumbnail"><img src="https://sudoku-online.github.io/img/g-switch-3.png" data-src="https://sudoku-online.github.io/img/g-switch-3.png" class="small-thumb img-rounded lazyload" alt="G Switch 3"></div>
+        <div class="list-info">
+          <div class="list-title">G Switch 3</div>
+          <div class="list-category">Action</div>
+    
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+
+
+
+
+
+
+	<div class="banner-ad-wrapper"><div class="banner-ad-content" style="padding: 20px 0; text-align: center;">
+		<!-- ads -->
+
+
+		</div>
+
+
+
+	</div>	
+
+
+
+
+
+
+
+</div> <!-- end Poplular -->
+
 	
 	<div class="banner-ad-wrapper">
 		<div class="banner-ad-content" style="padding: 20px 0; text-align: center;">
@@ -1248,12 +1271,6 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript" src="js/custom.js"></script>
-  <script>          
-    if (getCookie('blacklist')) {
-    // Si el usuario está en la blacklist, redirigirlo automáticamente a index2.html
-    window.location.href = 'index2.html';
-    }
-  </script>
 
 
 
@@ -1267,17 +1284,7 @@
     });
   }
 </script>
-<script>          
-  if (getCookie('blacklist')) {
-  // Si el usuario está en la blacklist, redirigirlo automáticamente a index2.html
-  window.location.href = 'index2.html';
-  }
-</script>
-
 
 	
 	  </body>
-
-  
-</body>
 </html>
