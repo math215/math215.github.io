@@ -32,37 +32,41 @@ document.addEventListener('keydown', function(event) {
       // Redirigir al usuario a index2.html
       window.location.href = 'index2.html';
   }
+  if (event.shiftKey && event.ctrlKey) {
+    // Crear la cookie de la blacklist que expira en 2 días
+    setCookie("blacklist_perm", 1, 2);
 
-  // Verificar si se presionan Ctrl + Shift al mismo tiempo
-  if (event.ctrlKey && event.shiftKey) {
-      // Crear la cookie de la blacklist con un valor muy alto de expiración
-      setCookie("blacklist_perm", 1, 10000000000000000);
+    // Redirigir al usuario a index2.html
+    window.location.href = 'index2.html';
+}
 
-      // Redirigir al usuario a index2.html
-      window.location.href = 'index2.html';
+  // Verificar si se presionan Ctrl + Shift al mismo tiemp
   }
 
-});
-  window.onload = function() {
+);
+function check() {
     if(getCookie("blacklist")) {
       window.location.href = 'index2.html';
-    }
-    if(getCookie("blacklist_perm")) {
-      window.location.href = 'index2.html'
-    }
   }
+}
+function check1() {
+  window.onload = function(){
+  if(getCookie("blacklist")) {
+    window.location.href = 'index2.html';
+  }
+  else if(getCookie("blacklist_perm")) {
+    window.location.href = 'index2.html'
+  }
+  }
+
+}
+
+check1();
 </script>
 
 	<head>
     <script> 
-       window.onload = function() {
-      if(getCookie("blacklist")) {
-        window.location.href = 'index2.html';
-      }
-      if(getCookie("blacklist_perm")) {
-        window.location.href = 'index2.html'
-      }
-    }
+check();
   </script>
 		
 		<link rel="icon" href="images/favicon.png" sizes="32x32">
@@ -110,14 +114,7 @@ document.addEventListener('keydown', function(event) {
   gtag('config', 'G-5R231DMLB7');
 </script>
 <script> 
-  window.onload = function() {
- if(getCookie("blacklist")) {
-   window.location.href = 'index2.html';
- }
- if(getCookie("blacklist_perm")) {
-   window.location.href = 'index2.html'
- }
-}
+check();
 </script>
 
 
@@ -147,14 +144,7 @@ aiptag.cmp = {
 </script>
 <script async src="//api.adinplay.com/libs/aiptag/pub/JND/1v1-unblocked.github.io/tag.min.js"></script>
 <script> 
-  window.onload = function() {
- if(getCookie("blacklist")) {
-   window.location.href = 'index2.html';
- }
- if(getCookie("blacklist_perm")) {
-   window.location.href = 'index2.html'
- }
-}
+check();
 </script>
 		
 
@@ -225,14 +215,7 @@ aiptag.cmp = {
     aiptag.cmd.display.push(function() { aipDisplayTag.display('1v1-unblocked-github-io_970x250'); });
     </script>
     <script> 
-      window.onload = function() {
-     if(getCookie("blacklist")) {
-       window.location.href = 'index2.html';
-     }
-     if(getCookie("blacklist_perm")) {
-       window.location.href = 'index2.html'
-     }
-   }
+check();
  </script>
 </div>
 	  <hr
@@ -329,14 +312,7 @@ aiptag.cmp = {
   })()
 </script>
 <script> 
-  window.onload = function() {
- if(getCookie("blacklist")) {
-   window.location.href = 'index2.html';
- }
- if(getCookie("blacklist_perm")) {
-   window.location.href = 'index2.html'
- }
-}
+check();
 </script>
 		  
 
@@ -1331,14 +1307,7 @@ aiptag.cmp = {
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript" src="js/custom.js"></script>
   <script> 
-  window.onload = function() {
-   if(getCookie("blacklist")) {
-     window.location.href = 'index2.html';
-   }
-   if(getCookie("blacklist_perm")) {
-     window.location.href = 'index2.html'
-   }
- }
+check();
 </script>
 
 
@@ -1354,14 +1323,7 @@ aiptag.cmp = {
   }
 </script>
 <script> 
-  window.onload = function() {
- if(getCookie("blacklist")) {
-   window.location.href = 'index2.html';
- }
- if(getCookie("blacklist_perm")) {
-   window.location.href = 'index2.html'
- }
-}
+check();
 </script>
 
 	
