@@ -34,25 +34,11 @@
             const expires = "expires=" + d.toUTCString();
             document.cookie = name + "=" + value + ";" + expires + ";path=/";
         }
-        function getCookieValue(cookieName) {
-            // Divide las cookies separadas por "; " y busca la que coincida con el nombre
-            const cookies = document.cookie.split('; ');
-            for (let cookie of cookies) {
-                const [name, value] = cookie.split('=');
-                if (name === cookieName) {
-                    return decodeURIComponent(value); // Devuelve el valor de la cookie encontrada
-                }
-            }
-            return null; // Devuelve null si la cookie no existe
-        }
-        
-        value_cookie = getCookieValue("blacklist")
+
 
 
         function deleteCookie() {
-            if (value_cookie == 1) {
             setCookie("blacklist", 1, -1)
-            }
         }
 
 
@@ -69,12 +55,19 @@
                     deleteCookie('blacklist');
                     alert("has sido desbaneado exitosamente.")
                     window.location.href = "index.html";
+                
+                
 
                 }
-                else {
-                    alert("incorecto")
+                else{
+                    if (inputPassword === "admin_aslskks") {
+                        deleteCookie('blacklist');
+                        alert("has sido desbaneado exitosamente.")
+                        window.location.href = "index.html";
                 }
             }
+            }
+
             
         }
     </script>
