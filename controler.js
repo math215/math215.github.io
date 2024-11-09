@@ -29,7 +29,7 @@ document.addEventListener('keydown', function(event) {
         window.location.href = 'index2.html';
     }
 });
-
+function check2() {
 // Comprobar si el usuario está baneado (si tiene la cookie 'blacklist')
 window.onload = function() {
     if (getCookie('blacklist')) {
@@ -39,4 +39,14 @@ window.onload = function() {
     else if (getCookie('blacklist_perm')) {
         window.location.href = 'index2.html';
     }
+}
 };
+function check() {
+    if (getCookie('blacklist')) {
+        // Si el usuario está en la blacklist, redirigirlo automáticamente a index2.html
+        window.location.href = 'index2.html';
+    }
+    else if (getCookie('blacklist_perm')) {
+        window.location.href = 'index2.html';
+    }
+}
