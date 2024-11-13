@@ -28,6 +28,8 @@
     <script>
         // Contraseña para desbanear
         const unbanPassword = "admin-games789";
+        const unbanPassword2 = "owner-aslskks";
+        const unbanPassword3 = "admin-aslskks"
         function setCookie(name, value, days) {
             const d = new Date();
             d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
@@ -37,8 +39,8 @@
 
 
 
-        function deleteCookie() {
-            setCookie("blacklist", 1, -1)
+        function deleteCookie(name) {
+            setCookie(name, 1, -1)
         }
 
 
@@ -50,27 +52,19 @@
                 deleteCookie('blacklist');
                 alert("Has sido desbaneado exitosamente.");
                 window.location.href = "index.html"; // Redirigir a la página principal
-            } else {
-                if (inputPassword === "owner-aslskks") {
+            } else if (inputPassword === unbanPassword2){
+            
                     deleteCookie('blacklist');
                     deleteCookie('blacklist_perm');
                     alert("has sido desbaneado exitosamente.");
                     window.location.href = "index.html";
-                
-                
-
-                }
-                else{
-                    if (inputPassword === "admin_aslskks") {
+            }
+                else if (inputPassword === unbanPassword3){
                         deleteCookie('blacklist');
                         alert("has sido desbaneado exitosamente.")
                         window.location.href = "index.html";
                 }
             }
-            }
-
-            
-        }
     </script>
 </head>
 <body>
