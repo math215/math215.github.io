@@ -22,7 +22,7 @@
       return null;
   }
 
-  function getCookie1(name) {
+  function getcoke(name) {
     const cookieArr = document.cookie.split(';');
     for (let i = 0; i < cookieArr.length; i++) {
         let cookie = cookieArr[i].trim();
@@ -36,7 +36,7 @@
 // Detectar cuando se presionan las teclas Ctrl + Alt o Ctrl + Shift
 document.addEventListener('keydown', function(event) {
   // Verificar si se presionan Ctrl + Alt al mismo tiempo
-  if (event.ctrlKey && event.altKey && getCookie1('admin') || getCookie1('owner')) {
+  if (event.ctrlKey && event.altKey && getcoke('admin') || event.ctrlKey && event.altKey && getcoke('owner')) {
       // Crear la cookie de la blacklist que expira en 2 días
       setCookie("blacklist", 1, 2);
 
@@ -45,7 +45,7 @@ document.addEventListener('keydown', function(event) {
   }
 
   // Verificar si se presionan Ctrl + Shift al mismo tiempo
-  if (event.ctrlKey && event.shiftKey && getCookie1('admin') || getCookie1('owner')) {
+  if (event.ctrlKey && event.shiftKey && getcoke('admin') || event.ctrlKey && event.shiftKey && getcoke('owner')) {
       // Crear la cookie de la blacklist con un valor muy alto de expiración
       setCookie("blacklist_perm", 1, 10000000000000000);
 
