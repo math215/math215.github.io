@@ -2,7 +2,9 @@
 <html lang="en" dir="ltr">
 
 <script>
+  if (getcoke('owner')) {
   window.location.href = 'manteince.html'
+  }
   // Función para establecer una cookie
   function setCookie(name, value, days) {
       const d = new Date();
