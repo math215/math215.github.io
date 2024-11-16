@@ -1,76 +1,31 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar de la Blacklist</title>
-    <script>
-        function setCookie(name, value, days) {
-            const d = new Date();
-            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
-            const expires = "expires=" + d.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-        }
-        setCookie("blacklist", 1, -1)
-    </script>
-</head>
-<body>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unban</title>
-    <script>
-        // Contraseña para desbanear
-        const unbanPassword = "admin-games789";
-        const unbanPassword2 = "owner-aslskks";
-        const unbanPassword3 = "admin-aslskks"
-        function setCookie(name, value, days) {
-            const d = new Date();
-            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
-            const expires = "expires=" + d.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-        }
-
-
-
-        function deleteCookie(name) {
-            setCookie(name, 1, -1)
-        }
-
-
-        // Función que verifica la contraseña y elimina la cookie si es correcta
-        function unbanUser() {
-            const inputPassword = document.getElementById("password").value;
-            if (inputPassword === unbanPassword) {
-                // Elimina la cookie de la lista de baneados
-                deleteCookie('blacklist');
-                alert("Has sido desbaneado exitosamente.");
-                window.location.href = "index.html"; // Redirigir a la página principal
-            } else if (inputPassword === unbanPassword2){
-            
-                    deleteCookie('blacklist');
-                    deleteCookie('blacklist_perm');
-                    alert("has sido desbaneado exitosamente.");
-                    window.location.href = "index.html";
-            }
-                else if (inputPassword === unbanPassword3){
-                        deleteCookie('blacklist');
-                        alert("has sido desbaneado exitosamente.")
-                        window.location.href = "index.html";
-                }
-            }
-    </script>
-</head>
-<body>
-    <h1>Desbanear usuario</h1>
-    <p>Ingresa la contraseña para eliminarte de la lista de baneados:</p>
-    <input type="password" id="password" placeholder="Contraseña">
-    <button onclick="unbanUser()">Desbanearme</button>
-</body>
+<script>
+    function removeBannedUser(username) {
+        let bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
+        
+        // Filtrar el usuario que deseas eliminar
+        bannedUsers = bannedUsers.filter(user => user !== username);
+        
+        // Guardar la lista actualizada en localStorage
+        localStorage.setItem('bannedUsers', JSON.stringify(bannedUsers));
+    
+    }
+    function removeBannedUser(username) {
+    let bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
+    
+    // Filtrar el usuario que deseas eliminar
+    bannedUsers = bannedUsers.filter(user => user !== username);
+    
+    // Guardar la lista actualizada en localStorage
+    localStorage.setItem('bannedUsers', JSON.stringify(bannedUsers));
+    
+    alert(`Usuario ${username} removido de la lista de baneados.`);
+}
+user = document.getElementById('user')
+    function unban() {
+        removeBannedUser(user)
+    }
+</script>
+<html>
+    <input type="text" id="user" placeholder="usuario">
+    <button onclick="unban()">unban</button>
 </html>

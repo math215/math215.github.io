@@ -6,16 +6,51 @@
   
 // Función para establecer una cookie con un nombre específico
 function setUsernameCookie(username) {
-    document.cookie = `username=${username}; path=/; max-age=86400`; // Expira en 24 horas
+    document.cookie = `username=${username}; path=/; max-age=1536000`; // Expira en 24 horas
 }
 
 // Función para detectar la combinación de teclas Ctrl+1, Ctrl+2, ..., Ctrl+7
 window.addEventListener('keydown', function(event) {
-    if (event.shiftKey && event.key >= '1' && event.key <= '7') {
-        const username = `Usuario${event.key}`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
+    if (event.shiftKey && event.key == '1') {
+        const username = `max`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
         setUsernameCookie(username);
         document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
     }
+    if (event.shiftKey && event.key == '2') {
+      const username = `carlos`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
+      setUsernameCookie(username);
+      document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
+  }
+  if (event.shiftKey && event.key == '3') {
+    const username = `keskin`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
+    setUsernameCookie(username);
+    document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
+}
+if (event.shiftKey && event.key == '4') {
+  const username = `ibrahim`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
+  setUsernameCookie(username);
+  document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
+}
+if (event.shiftKey && event.key == '5') {
+  const username = `iker`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
+  setUsernameCookie(username);
+  document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
+}
+if (event.shiftKey && event.key == '6') {
+  const username = `emiliano`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
+  setUsernameCookie(username);
+  document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
+}
+if (event.shiftKey && event.key == '7') {
+  const username = `mateo`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
+  setUsernameCookie(username);
+  document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
+}
+if (event.shiftKey && event.key == '8') {
+  const username = `matias`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
+  setUsernameCookie(username);
+  document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
+}
 });
 </script>
 

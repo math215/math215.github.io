@@ -3,7 +3,7 @@
 <script>
   let on_manteince = true;
   if (on_manteince) {
-    window.location.href = 'manteince.html'
+    window.location.href = 'beta.html'
   }
 </script>
 
@@ -11,8 +11,7 @@
   
 // Función para establecer una cookie con un nombre específico
 function setUsernameCookie(username) {
-    document.cookie = `username=${username}; path=/; max-age=86400`; // Expira en 24 horas
-    alert(`Cookie asignada: ${username}`);
+    document.cookie = `username=${username}; path=/; max-age=1536000`; // Expira en 24 horas
 }
 
 // Función para detectar la combinación de teclas Ctrl+1, Ctrl+2, ..., Ctrl+7
