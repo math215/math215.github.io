@@ -82,7 +82,7 @@
         const bannedListElement = document.getElementById('bannedList');
         bannedListElement.innerHTML = ''; // Limpiar la lista actual
 
-        const bannedRef = firebase.database().ref('bannedUsers');
+        const bannedRef = app.firebase.database().ref('bannedUsers');
         bannedRef.once('value', (snapshot) => {
           const bannedUsers = snapshot.val();
           if (bannedUsers) {
