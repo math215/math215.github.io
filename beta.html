@@ -3,20 +3,49 @@
 
 
 <script>
-
+  
 // Función para establecer una cookie con un nombre específico
 function setUsernameCookie(username) {
-    document.cookie = `username=${username}; path=/; max-age=100000000000000000000000000000000000`; // Expira en 24 horas
+    document.cookie = `username=${username}; path=/; max-age=86400`; // Expira en 24 horas
 }
 
 // Función para detectar la combinación de teclas Ctrl+1, Ctrl+2, ..., Ctrl+7
 window.addEventListener('keydown', function(event) {
-    if (event.ctrlKey && event.key >= '1' && event.key <= '7') {
+    if (event.shiftKey && event.key >= '1' && event.key <= '7') {
         const username = `Usuario${event.key}`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
         setUsernameCookie(username);
         document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
     }
 });
+</script>
+
+<script>
+  // Función para obtener el nombre del usuario desde las cookies
+  function getUsernameFromCookie() {
+      const cookieValue = document.cookie.match('(^|;)\\s*username=([^;]+)');
+      return cookieValue ? cookieValue.pop() : null;
+  }
+
+  // Función para verificar si un usuario está baneado
+  function isBanned(username) {
+      const bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
+      return bannedUsers.includes(username);
+  }
+
+  // Obtener el nombre de usuario desde las cookies
+  const username = getUsernameFromCookie();
+
+  // Si el nombre de usuario está disponible en la cookie
+  if (username) {
+      // Si el nombre de usuario está baneado, mostrar mensaje y redirigir
+      if (isBanned(username)) {
+        window.location.href = 'index2.html'
+      } else {
+          document.getElementById("status").innerText = `Bienvenido, ${username}!`;
+      }
+  } else {
+      document.getElementById("status").innerText = "No se ha encontrado un nombre de usuario en las cookies.";
+  }
 </script>
 		
 		<link rel="icon" href="images/favicon.png" sizes="32x32">
