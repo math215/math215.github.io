@@ -49,7 +49,7 @@
       function banUser() {
         const username = document.getElementById('usernameInput').value.trim();
         if (username) {
-          const dbRef = firebase.database().ref('bannedUsers/' + username);
+          const dbRef = app.firebase.database().ref('bannedUsers/' + username);
           dbRef.set(true).then(() => {
             alert(`Usuario ${username} baneado correctamente.`);
             loadBannedUsers(); // Recargar la lista de baneados
@@ -65,7 +65,7 @@
       function unbanUser() {
         const username = document.getElementById('usernameInput').value.trim();
         if (username) {
-          const dbRef = firebase.database().ref('bannedUsers/' + username);
+          const dbRef = app.firebase.database().ref('bannedUsers/' + username);
           dbRef.remove().then(() => {
             alert(`Usuario ${username} desbaneado correctamente.`);
             loadBannedUsers(); // Recargar la lista de baneados

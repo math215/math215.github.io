@@ -53,7 +53,7 @@
 
     // Función para verificar si un usuario está baneado
     function checkIfBanned(username) {
-      const dbRef = firebase.database().ref('bannedUsers/' + username);
+      const dbRef = app.firebase.database().ref('bannedUsers/' + username);
       dbRef.get().then((snapshot) => {
         if (snapshot.exists()) {
           // Si el usuario está baneado, redirigir
@@ -67,7 +67,7 @@
 
     // Función para banear a un usuario
     function banUser(username) {
-      const dbRef = firebase.database().ref('bannedUsers/' + username);
+      const dbRef = app.firebase.database().ref('bannedUsers/' + username);
       dbRef.set(true).then(() => {
       }).catch((error) => {
       });
