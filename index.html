@@ -1,87 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
+<script type="module">
 
-<script>
-  
-// Función para establecer una cookie con un nombre específico
-function setUsernameCookie(username) {
-    document.cookie = `username=${username}; path=/; max-age=1536000`; // Expira en 24 horas
-}
+  // Import the functions you need from the SDKs you need
 
-// Función para detectar la combinación de teclas Ctrl+1, Ctrl+2, ..., Ctrl+7
-window.addEventListener('keydown', function(event) {
-    if (event.shiftKey && event.key == '1') {
-        const username = `max`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
-        setUsernameCookie(username);
-        document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
-    }
-    if (event.shiftKey && event.key == '2') {
-      const username = `carlos`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
-      setUsernameCookie(username);
-      document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
-  }
-  if (event.shiftKey && event.key == '3') {
-    const username = `keskin`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
-    setUsernameCookie(username);
-    document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
-}
-if (event.shiftKey && event.key == '4') {
-  const username = `ibrahim`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
-  setUsernameCookie(username);
-  document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
-}
-if (event.shiftKey && event.key == '5') {
-  const username = `iker`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
-  setUsernameCookie(username);
-  document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
-}
-if (event.shiftKey && event.key == '6') {
-  const username = `emiliano`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
-  setUsernameCookie(username);
-  document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
-}
-if (event.shiftKey && event.key == '7') {
-  const username = `mateo`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
-  setUsernameCookie(username);
-  document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
-}
-if (event.shiftKey && event.key == '8') {
-  const username = `matias`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
-  setUsernameCookie(username);
-  document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
-}
-});
-</script>
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 
-<script>
-  // Función para obtener el nombre del usuario desde las cookies
-  function getUsernameFromCookie() {
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyDdI_mJQ-qJNoqGLYWVGZL6embUAAvSeag",
+
+    authDomain: "v1lol-c0273.firebaseapp.com",
+
+    projectId: "v1lol-c0273",
+
+    storageBucket: "v1lol-c0273.firebasestorage.app",
+
+    messagingSenderId: "461159141114",
+
+    appId: "1:461159141114:web:57a2dd97892383bd600343",
+
+    measurementId: "G-2M09ZGP80M"
+
+  };
+    // Inicialización de Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = firebase.database(app);
+
+    // Obtener el nombre de usuario de las cookies
+    function getUsernameFromCookie() {
       const cookieValue = document.cookie.match('(^|;)\\s*username=([^;]+)');
       return cookieValue ? cookieValue.pop() : null;
-  }
+    }
 
-  // Función para verificar si un usuario está baneado
-  function isBanned(username) {
-      const bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
-      return bannedUsers.includes(username);
-  }
+    // Función para verificar si un usuario está baneado
+    function checkIfBanned(username) {
+      const dbRef = firebase.database().ref('bannedUsers/' + username);
+      dbRef.get().then((snapshot) => {
+        if (snapshot.exists()) {
+          // Si el usuario está baneado, redirigir
+          window.location.href = "index2.html"; // Redirigir si está baneado
+        } else {
+        }
+      }).catch((error) => {
+        console.error("Error al comprobar el baneo:", error);
+      });
+    }
 
-  // Obtener el nombre de usuario desde las cookies
-  const username = getUsernameFromCookie();
+    // Función para banear a un usuario
+    function banUser(username) {
+      const dbRef = firebase.database().ref('bannedUsers/' + username);
+      dbRef.set(true).then(() => {
+      }).catch((error) => {
+      });
+    }
 
-  // Si el nombre de usuario está disponible en la cookie
-  if (username) {
-      // Si el nombre de usuario está baneado, mostrar mensaje y redirigir
-      if (isBanned(username)) {
-        window.location.href = 'index2.html'
-      } else {
-          document.getElementById("status").innerText = `Bienvenido, ${username}!`;
-      }
-  } else {
-      document.getElementById("status").innerText = "No se ha encontrado un nombre de usuario en las cookies.";
-  }
+    // Obtener el nombre de usuario desde las cookies y verificar si está baneado
+    const username = getUsernameFromCookie();
+    if (username) {
+      checkIfBanned(username); // Verifica si el usuario está baneado
+    }
+
 </script>
+
+
 		
 		<link rel="icon" href="images/favicon.png" sizes="32x32">
 		
