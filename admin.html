@@ -1,9 +1,54 @@
-<script>
-    function setCookie(name, value, days) {
-        const d = new Date();
-        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
-        const expires = "expires=" + d.toUTCString();
-        document.cookie = name + "=" + value + ";" + expires + ";path=/";
-    }
-    setCookie("admin", 2, 100000000000000000000000)
-</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Baneos</title>
+</head>
+<body>
+    <h1>Panel de Administración</h1>
+
+    <p>Agregar usuario a la lista de baneados:</p>
+    <input type="text" id="username" placeholder="Nombre de usuario">
+    <button onclick="banUser()">Banear Usuario</button>
+
+    <h3>Usuarios baneados:</h3>
+    <ul id="bannedList"></ul>
+
+    <script>
+        // Función para cargar la lista de baneados desde localStorage
+        function loadBannedUsers() {
+            const bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
+            const bannedListElement = document.getElementById('bannedList');
+            bannedListElement.innerHTML = ''; // Limpiar la lista actual
+
+            bannedUsers.forEach(user => {
+                const listItem = document.createElement('li');
+                listItem.textContent = user;
+                bannedListElement.appendChild(listItem);
+            });
+        }
+
+        // Función para agregar un usuario a la lista de baneados
+        function banUser() {
+            const username = document.getElementById('username').value.trim();
+            if (username) {
+                const bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
+                if (!bannedUsers.includes(username)) {
+                    bannedUsers.push(username);
+                    localStorage.setItem('bannedUsers', JSON.stringify(bannedUsers)); // Guardar la lista actualizada
+                    loadBannedUsers(); // Recargar la lista de baneados
+                    alert(`Usuario ${username} baneado.`);
+                } else {
+                    alert('Este usuario ya está baneado.');
+                }
+            } else {
+                alert('Por favor ingresa un nombre de usuario.');
+            }
+        }
+
+        // Cargar la lista de baneados cuando se carga la página
+        loadBannedUsers();
+    </script>
+</body>
+</html>

@@ -9,8 +9,6 @@ OWNERDOMAIN=1v1-unblocked.github.io
 MANAGERDOMAIN=adinplay.com
 adinplay.com, JND, DIRECT
 
-#Google
-google.com, pub-3282547114800347, RESELLER, f08c47fec0942fa0
 
 #Appnexus
 appnexus.com, 8631, RESELLER, f5ab79cb980f11d1
