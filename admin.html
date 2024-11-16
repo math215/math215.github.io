@@ -12,6 +12,10 @@
     <input type="text" id="username" placeholder="Nombre de usuario">
     <button onclick="banUser()">Banear Usuario</button>
 
+    <p>Eliminar usuario de la lista de baneados:</p>
+    <input type="text" id="user" placeholder="Nombre de usuario a quitar">
+    <button onclick="unban()">Unban</button>
+
     <h3>Usuarios baneados:</h3>
     <ul id="bannedList"></ul>
 
@@ -44,6 +48,27 @@
                 }
             } else {
                 alert('Por favor ingresa un nombre de usuario.');
+            }
+        }
+
+        // Función para eliminar un usuario de la lista de baneados
+        function removeBannedUser(username) {
+            let bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
+            // Filtrar el usuario que deseas eliminar
+            bannedUsers = bannedUsers.filter(user => user !== username);
+            // Guardar la lista actualizada en localStorage
+            localStorage.setItem('bannedUsers', JSON.stringify(bannedUsers));
+            alert(`Usuario ${username} removido de la lista de baneados.`);
+            loadBannedUsers(); // Recargar la lista de baneados
+        }
+
+        // Función para desbanear un usuario
+        function unban() {
+            let user = document.getElementById('user').value.trim(); // Obtén el valor del input
+            if (user) {
+                removeBannedUser(user);
+            } else {
+                alert('Por favor ingresa el nombre del usuario a desbanear.');
             }
         }
 
