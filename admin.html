@@ -20,87 +20,84 @@
     </ul>
 
     <script type="module">
-        // Import the functions you need from the SDKs you need
+        // Importar los módulos necesarios de Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyDdI_mJQ-qJNoqGLYWVGZL6embUAAvSeag",
-          authDomain: "v1lol-c0273.firebaseapp.com",
-          projectId: "v1lol-c0273",
-          storageBucket: "v1lol-c0273.firebasestorage.app",
-          messagingSenderId: "461159141114",
-          appId: "1:461159141114:web:57a2dd97892383bd600343",
-          measurementId: "G-2M09ZGP80M"
-        };
-      
-        // Initialize Firebase
+        import { getDatabase, ref, set, remove, get, child } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+        // Configuración de Firebase
+ // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyDdI_mJQ-qJNoqGLYWVGZL6embUAAvSeag",
+    authDomain: "v1lol-c0273.firebaseapp.com",
+    projectId: "v1lol-c0273",
+    storageBucket: "v1lol-c0273.firebasestorage.app",
+    messagingSenderId: "461159141114",
+    appId: "1:461159141114:web:57a2dd97892383bd600343",
+    measurementId: "G-2M09ZGP80M"
+  };
+        // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
+        const database = getDatabase(app);
 
-    <script>
-
-      // Función para banear un usuario
-      function banUser() {
-        const username = document.getElementById('usernameInput').value.trim();
-        if (username) {
-          const dbRef = app.firebase.database().ref('bannedUsers/' + username);
-          dbRef.set(true).then(() => {
-            alert(`Usuario ${username} baneado correctamente.`);
-            loadBannedUsers(); // Recargar la lista de baneados
-          }).catch((error) => {
-            console.error("Error al banear al usuario:", error);
-          });
-        } else {
-          alert("Por favor, ingrese un nombre de usuario.");
-        }
-      }
-
-      // Función para desbanear un usuario
-      function unbanUser() {
-        const username = document.getElementById('usernameInput').value.trim();
-        if (username) {
-          const dbRef = app.firebase.database().ref('bannedUsers/' + username);
-          dbRef.remove().then(() => {
-            alert(`Usuario ${username} desbaneado correctamente.`);
-            loadBannedUsers(); // Recargar la lista de baneados
-          }).catch((error) => {
-            console.error("Error al desbanear al usuario:", error);
-          });
-        } else {
-          alert("Por favor, ingrese un nombre de usuario.");
-        }
-      }
-
-      // Función para cargar la lista de usuarios baneados
-      function loadBannedUsers() {
-        const bannedListElement = document.getElementById('bannedList');
-        bannedListElement.innerHTML = ''; // Limpiar la lista actual
-
-        const bannedRef = app.firebase.database().ref('bannedUsers');
-        bannedRef.once('value', (snapshot) => {
-          const bannedUsers = snapshot.val();
-          if (bannedUsers) {
-            for (let username in bannedUsers) {
-              const li = document.createElement('li');
-              li.textContent = username;
-              bannedListElement.appendChild(li);
+        // Función para banear un usuario
+        async function banUser() {
+            const username = document.getElementById('usernameInput').value.trim();
+            if (username) {
+                try {
+                    const userRef = ref(database, 'bannedUsers/' + username);
+                    await set(userRef, true);
+                    alert(`Usuario "${username}" baneado correctamente.`);
+                    loadBannedUsers();
+                } catch (error) {
+                    console.error("Error al banear al usuario:", error);
+                }
+            } else {
+                alert("Por favor, ingrese un nombre de usuario.");
             }
-          } else {
-            bannedListElement.innerHTML = '<li>No hay usuarios baneados.</li>';
-          }
-        }).catch((error) => {
-          console.error("Error al cargar la lista de baneados:", error);
-        });
-      }
+        }
 
-      // Cargar la lista de usuarios baneados al cargar la página
-      loadBannedUsers();
+        // Función para desbanear un usuario
+        async function unbanUser() {
+            const username = document.getElementById('usernameInput').value.trim();
+            if (username) {
+                try {
+                    const userRef = ref(database, 'bannedUsers/' + username);
+                    await remove(userRef);
+                    alert(`Usuario "${username}" desbaneado correctamente.`);
+                    loadBannedUsers();
+                } catch (error) {
+                    console.error("Error al desbanear al usuario:", error);
+                }
+            } else {
+                alert("Por favor, ingrese un nombre de usuario.");
+            }
+        }
+
+        // Función para cargar la lista de usuarios baneados
+        async function loadBannedUsers() {
+            const bannedListElement = document.getElementById('bannedList');
+            bannedListElement.innerHTML = ''; // Limpiar la lista actual
+
+            try {
+                const bannedRef = ref(database, 'bannedUsers');
+                const snapshot = await get(bannedRef);
+                if (snapshot.exists()) {
+                    const bannedUsers = snapshot.val();
+                    for (let username in bannedUsers) {
+                        const li = document.createElement('li');
+                        li.textContent = username;
+                        bannedListElement.appendChild(li);
+                    }
+                } else {
+                    bannedListElement.innerHTML = '<li>No hay usuarios baneados.</li>';
+                }
+            } catch (error) {
+                console.error("Error al cargar la lista de baneados:", error);
+            }
+        }
+
+        // Cargar la lista de usuarios baneados al cargar la página
+        loadBannedUsers();
     </script>
 </body>
 </html>
