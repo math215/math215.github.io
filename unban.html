@@ -8,23 +8,15 @@
         // Guardar la lista actualizada en localStorage
         localStorage.setItem('bannedUsers', JSON.stringify(bannedUsers));
     
+        alert(`Usuario ${username} removido de la lista de baneados.`);
     }
-    function removeBannedUser(username) {
-    let bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
-    
-    // Filtrar el usuario que deseas eliminar
-    bannedUsers = bannedUsers.filter(user => user !== username);
-    
-    // Guardar la lista actualizada en localStorage
-    localStorage.setItem('bannedUsers', JSON.stringify(bannedUsers));
-    
-    alert(`Usuario ${username} removido de la lista de baneados.`);
-}
-user = document.getElementById('user')
+
     function unban() {
-        removeBannedUser(user)
+        let user = document.getElementById('user').value; // Obtén el valor del input
+        removeBannedUser(user);
     }
 </script>
+
 <html>
     <input type="text" id="user" placeholder="usuario">
     <button onclick="unban()">unban</button>
