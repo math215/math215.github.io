@@ -1,86 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <script>
-  if (getCookie('owner')) {
-    
-  }
-  else {
+  let on_manteince = true;
+  if (on_manteince) {
     window.location.href = 'manteince.html'
-  }
-  // Función para establecer una cookie
-  function setCookie(name, value, days) {
-      const d = new Date();
-      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiración en días
-      const expires = "expires=" + d.toUTCString();
-      document.cookie = name + "=" + value + ";" + expires + ";path=/";
-  }
-
-  // Función para obtener el valor de una cookie por su nombre
-  function getCookie(name) {
-      const cookieArr = document.cookie.split(';');
-      for (let i = 0; i < cookieArr.length; i++) {
-          let cookie = cookieArr[i].trim();
-          if (cookie.startsWith(name + '=')) {
-              return cookie.substring(name.length + 1);
-          }
-      }
-      return null;
-  }
-
-  function getcoke(name) {
-    const cookieArr = document.cookie.split(';');
-    for (let i = 0; i < cookieArr.length; i++) {
-        let cookie = cookieArr[i].trim();
-        if (cookie.startsWith(name + '=')) {
-            return cookie.substring(name.length + 1);
-        }
-    }
-    return true;
-}
-
-// Detectar cuando se presionan las teclas Ctrl + Alt o Ctrl + Shift
-document.addEventListener('keydown', function(event) {
-  // Verificar si se presionan Ctrl + Alt al mismo tiempo
-  if (event.ctrlKey && event.altKey && getcoke('admin') || event.ctrlKey && event.altKey && getcoke('owner')) {
-      // Crear la cookie de la blacklist que expira en 2 días
-      setCookie("blacklist", 1, 2);
-
-      // Redirigir al usuario a index2.html
-      window.location.href = 'index2.html';
-  }
-
-  // Verificar si se presionan Ctrl + Shift al mismo tiempo
-  if (event.ctrlKey && event.shiftKey && getcoke('admin') || event.ctrlKey && event.shiftKey && getcoke('owner')) {
-      // Crear la cookie de la blacklist con un valor muy alto de expiración
-      setCookie("blacklist_perm", 1, 10000000000000000);
-
-      // Redirigir al usuario a index2.html
-      window.location.href = 'index2.html';
-  }
-
-});
-  window.onload = function() {
-    if(getCookie("blacklist")) {
-      window.location.href = 'index2.html';
-    }
-    if(getCookie("blacklist_perm")) {
-      window.location.href = 'index2.html'
-    }
   }
 </script>
 
-	<head>
-    <script> 
-       window.onload = function() {
-      if(getCookie("blacklist")) {
-        window.location.href = 'index2.html';
-      }
-      if(getCookie("blacklist_perm")) {
-        window.location.href = 'index2.html'
-      }
+<script>
+  
+// Función para establecer una cookie con un nombre específico
+function setUsernameCookie(username) {
+    document.cookie = `username=${username}; path=/; max-age=86400`; // Expira en 24 horas
+    alert(`Cookie asignada: ${username}`);
+}
+
+// Función para detectar la combinación de teclas Ctrl+1, Ctrl+2, ..., Ctrl+7
+window.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key >= '1' && event.key <= '7') {
+        const username = `Usuario${event.key}`; // Asigna nombres de usuario como "Usuario1", "Usuario2", etc.
+        setUsernameCookie(username);
+        document.getElementById('status').innerText = `Nombre de usuario asignado: ${username}`;
     }
-  </script>
+});
+</script>
 		
 		<link rel="icon" href="images/favicon.png" sizes="32x32">
 		
