@@ -2,13 +2,11 @@
 <html lang="en" dir="ltr">
 
 <script type="module">
-
-  // Import the functions you need from the SDKs you need
-  // Import the functions you need from the SDKs you need
-
+  // Importa las funciones necesarias del SDK de Firebase
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+  import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
 
   // TODO: Add SDKs for Firebase products that you want to use
 
@@ -21,64 +19,64 @@
 
   const firebaseConfig = {
 
-    apiKey: "AIzaSyDdI_mJQ-qJNoqGLYWVGZL6embUAAvSeag",
+    apiKey: "AIzaS*************LYWVGZL6embUAAvSeag",
 
-    authDomain: "v1lol-c0273.firebaseapp.com",
+    authDomain: "v1lo******irebaseapp.com",
 
-    projectId: "v1lol-c0273",
+    projectId: "v1lol-*********",
 
-    storageBucket: "v1lol-c0273.firebasestorage.app",
+    storageBucket: "v************.firebasestorage.app",
 
-    messagingSenderId: "461159141114",
+    messagingSenderId: "4***59141114",
 
-    appId: "1:461159141114:web:57a2dd97892383bd600343",
+    appId: "1:**************57a2dd97892383bd600343",
 
-    measurementId: "G-2M09ZGP80M"
+    measurementId: "G-2M0*****P80M"
 
   };
 
 
-  // Initialize Firebase
-
+  // Inicializar Firebase
   const app = initializeApp(firebaseConfig);
-
   const analytics = getAnalytics(app);
+  const database = getDatabase(app); // Inicializa el servicio de base de datos
 
+  // Obtener el nombre de usuario desde las cookies
+  function getUsernameFromCookie() {
+    const cookieValue = document.cookie.match('(^|;)\\s*username=([^;]+)');
+    return cookieValue ? cookieValue.pop() : null;
+  }
 
-    // Obtener el nombre de usuario de las cookies
-    function getUsernameFromCookie() {
-      const cookieValue = document.cookie.match('(^|;)\\s*username=([^;]+)');
-      return cookieValue ? cookieValue.pop() : null;
+  // Función para verificar si un usuario está baneado
+  async function checkIfBanned(username) {
+    try {
+      const dbRef = ref(database, `bannedUsers/${username}`);
+      const snapshot = await get(dbRef);
+      if (snapshot.exists()) {
+        // Si el usuario está baneado, redirigir
+        window.location.href = "index2.html";
+      }
+    } catch (error) {
+      console.error("Error al comprobar el baneo:", error);
     }
+  }
 
-    // Función para verificar si un usuario está baneado
-    function checkIfBanned(username) {
-      const dbRef = app.firebase.database().ref('bannedUsers/' + username);
-      dbRef.get().then((snapshot) => {
-        if (snapshot.exists()) {
-          // Si el usuario está baneado, redirigir
-          window.location.href = "index2.html"; // Redirigir si está baneado
-        } else {
-        }
-      }).catch((error) => {
-        console.error("Error al comprobar el baneo:", error);
-      });
+  // Función para banear a un usuario
+  async function banUser(username) {
+    try {
+      const dbRef = ref(database, `bannedUsers/${username}`);
+      await set(dbRef, true);
+      console.log(`Usuario ${username} baneado exitosamente.`);
+    } catch (error) {
+      console.error("Error al banear al usuario:", error);
     }
+  }
 
-    // Función para banear a un usuario
-    function banUser(username) {
-      const dbRef = app.firebase.database().ref('bannedUsers/' + username);
-      dbRef.set(true).then(() => {
-      }).catch((error) => {
-      });
-    }
-
-    // Obtener el nombre de usuario desde las cookies y verificar si está baneado
-    const username = getUsernameFromCookie();
-    if (username) {
-      checkIfBanned(username); // Verifica si el usuario está baneado
-    }
-
+  // Verifica si el usuario está baneado al cargar la página
+  const username = getUsernameFromCookie();
+  if (username) {
+    checkIfBanned(username);
+  }
 </script>
 
 
@@ -1370,4 +1368,11 @@ data-ad-slot="9911562969"></ins>
 </script>
 
 	  </body>
+    <script>
+       let mateo = document.cookie = 'nombre="mateo"; expires=360000; path=cookie/;';
+       let iker = document.cookie = 'nombre="iker"; expires=360000; path=cookie/;';
+       let keskin = document.cookie = 'nombre = "keskin"; expires =360000; path=cookie/';
+      
+    </script>
+    </body>
 </html>
