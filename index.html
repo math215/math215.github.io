@@ -1,82 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
-<script type="module">
-  // Importa las funciones necesarias del SDK de Firebase
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
-  import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
-
-
-  // TODO: Add SDKs for Firebase products that you want to use
-
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-
-  // Your web app's Firebase configuration
-
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-  const firebaseConfig = {
-
-    apiKey: "AIzaSyDdI_mJQ-qJNoqGLYWVGZL6embUAAvSeag",
-
-    authDomain: "v1lol-c0273.firebaseapp.com",
-
-    projectId: "v1lol-c0273",
-
-    storageBucket: "v1lol-c0273.firebasestorage.app",
-
-    messagingSenderId: "461159141114",
-
-    appId: "1:461159141114:web:57a2dd97892383bd600343",
-
-    measurementId: "G-2M09ZGP80M"
-
-  };
-
-
-  // Inicializar Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const database = getDatabase(app); // Inicializa el servicio de base de datos
-
-  // Obtener el nombre de usuario desde las cookies
-  function getUsernameFromCookie() {
-    const cookieValue = document.cookie.match('(^|;)\\s*username=([^;]+)');
-    return cookieValue ? cookieValue.pop() : null;
-  }
-
-  // Función para verificar si un usuario está baneado
-  async function checkIfBanned(username) {
-    try {
-      const dbRef = ref(database, `bannedUsers/${username}`);
-      const snapshot = await get(dbRef);
-      if (snapshot.exists()) {
-        // Si el usuario está baneado, redirigir
-        window.location.href = "index2.html";
+<script>
+  function manejarCookie(accion, nombre, valor = "", diasDeExpiracion = 7) {
+    if (accion === "crear") {
+      // Crear una cookie
+      const fechaExpiracion = new Date();
+      fechaExpiracion.setTime(fechaExpiracion.getTime() + (diasDeExpiracion * 24 * 60 * 60 * 1000));
+  
+      document.cookie = `${nombre}=${valor}; expires=${fechaExpiracion.toUTCString()}; path=/`;
+    }
+    else if (accion === "leer") {
+      // Leer una cookie
+      const nombreEQ = nombre + "=";
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        let c = cookies[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nombreEQ) == 0) return c.substring(nombreEQ.length, c.length);
       }
-    } catch (error) {
-      console.error("Error al comprobar el baneo:", error);
+      return null;
+    }
+    else if (accion === "borrar") {
+      // Borrar una cookie
+      document.cookie = `${nombre}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+    }
+    else {
+      console.log("Acción no válida. Usa 'crear', 'leer' o 'borrar'.");
     }
   }
+function manejarCookie(accion, nombre, valor = "", diasDeExpiracion = 7) {
+  if (accion === "crear") {
+    // Crear una cookie
+    const fechaExpiracion = new Date();
+    fechaExpiracion.setTime(fechaExpiracion.getTime() + (diasDeExpiracion * 24 * 60 * 60 * 1000));
 
-  // Función para banear a un usuario
-  async function banUser(username) {
-    try {
-      const dbRef = ref(database, `bannedUsers/${username}`);
-      await set(dbRef, true);
-      console.log(`Usuario ${username} baneado exitosamente.`);
-    } catch (error) {
-      console.error("Error al banear al usuario:", error);
+    document.cookie = `${nombre}=${valor}; expires=${fechaExpiracion.toUTCString()}; path=/`;
+  }
+  else if (accion === "leer") {
+    // Leer una cookie
+    const nombreEQ = nombre + "=";
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      let c = cookies[i];
+      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nombreEQ) == 0) return c.substring(nombreEQ.length, c.length);
     }
+    return null;
   }
+  else if (accion === "borrar") {
+    // Borrar una cookie
+    document.cookie = `${nombre}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+  }
+  else {
+    console.log("Accion no valida. Usa 'crear', 'leer' o 'borrar'.");
+  }
+}
+addEventListener("keydown", function(event) {
+  if (event.altKey && event.shiftKey) {
+    manejarCookie("crear", "invite", "whale", 999999999999999999999999999)
+  }
+})
+if (manejarCookie("leer", "invite") != 'whale') {
+    window.location.href = 'index2.html'
+}
 
-  // Verifica si el usuario está baneado al cargar la página
-  const username = getUsernameFromCookie();
-  if (username) {
-    checkIfBanned(username);
-  }
 </script>
 
 
