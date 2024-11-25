@@ -64,7 +64,8 @@ function manejarCookie(accion, nombre, valor = "", diasDeExpiracion = 7) {
 
 addEventListener("keydown", function(event) {
         if (event.shiftKey && event.altKey) {
-            window.location.href = urlDestino;
             manejarCookie("crear", "invite", "whale", 10000000000000000000000)
+            window.location.href = urlDestino;
+            
         }
     })
