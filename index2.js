@@ -1,5 +1,7 @@
 // Datos a enviar
-const mensaje = "invite_aslskks";
+const mensaje = "invite";
+const mensaje2 = "owner";
+const owner = `index.html?mensaje=${encodeURIComponent(mensaje2)}`
 const urlDestino = `index.html?mensaje=${encodeURIComponent(mensaje)}`;
 
 // Redirección
@@ -41,5 +43,9 @@ addEventListener("keydown", function(event) {
             manejarCookie("crear", "invite", "whale", 10000000000000000000000);
             window.location.href = urlDestino;
             
+        }
+        console.log(event.key);
+        if(event.key == "," && event.key == "p") {
+          this.window.location.href = owner;
         }
     })
