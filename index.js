@@ -1,6 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const mensaje = params.get("mensaje");
-if (mensaje != "invite_aslskks" || mensaje == "") {
+if (mensaje != "invite_aslskks" || mensaje == "" && leer("invite") == null && leer("invite") != "whale") {
     window.location.href = "index2.html";
 }
 function leer(nombre = "") {
@@ -13,8 +13,4 @@ function leer(nombre = "") {
         if (c.indexOf(nombreEQ) == 0) return c.substring(nombreEQ.length, c.length);
       }
       return null; 
-}
-let res = leer("invite");
-if (res == null) {
-    window.location.href = "index2.html";
-}
+};
