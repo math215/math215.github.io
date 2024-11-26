@@ -1,10 +1,10 @@
 const params = new URLSearchParams(window.location.search);
 const mensaje = params.get("mensaje");
-if (mensaje != "invite" && leer("invite") != "whale" && mensaje != "owner") {
+if (mensaje != "invite" && leer("invite") != "whale") {
     window.location.href = "index2.html";
 }
-else {
-  
+else if(leer("admin") == 'whale') {
+  window.location.href = 'admin.html'
 }
 function leer(nombre = "") {
       // Leer una cookie

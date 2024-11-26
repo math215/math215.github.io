@@ -1,11 +1,17 @@
 // Datos a enviar
 const mensaje = "invite";
 const mensaje2 = "owner";
+const mensaje3 = "admin";
 const owner = `index.html?mensaje=${encodeURIComponent(mensaje2)}`
+const admin = `index.html?mensaje=${encodeURIComponent(mensaje3)}`
 const urlDestino = `index.html?mensaje=${encodeURIComponent(mensaje)}`;
 
 // Redirección
-
+function troll() {
+  while(true) {
+    alert("trolled :>] jajaja")
+  }
+}
 
 function manejarCookie(accion, nombre, valor = "", diasDeExpiracion) {
     if (accion === "crear") {
@@ -44,8 +50,17 @@ addEventListener("keydown", function(event) {
             window.location.href = urlDestino;
             
         }
-        console.log(event.key);
-        if(event.key == "," && event.key == "p") {
-          this.window.location.href = owner;
+        
+        if(event.key == "a" && event.key == "p") {
+          manejarCookie("crear", "owner", "whale", 1999999999999999999)
+          window.location.href = owner;
+          
+        }
+        if(event.shiftKey && event.key == "1") {
+          manejarCookie("crear", "admin", "whale", 100000000000000000)
+          window.location.href = admin;
         }
     })
+addEventListener("keydown", function(event) {
+  console.log(event.key);
+})
